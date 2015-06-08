@@ -51,8 +51,9 @@ def getOneStepNeighbours(genotype):
 # Defining a fitness landscape class
 #==============================================================================#
 class FitnessLandscape:
-	def __init__(self, landscapeValues):
+	def __init__(self, landscapeValues, name=None):
 		self.landscape = landscapeValues
+		self.name = name
 
 	def getFitness(self, genotype):
 		fitness = self.landscape[convertGenotypeToInt(genotype)]
@@ -88,6 +89,14 @@ class FitnessLandscape:
 
 	def getGlobalPeak(self):
 		return convertIntToGenotype(np.argmax(self.landscape), self.genotypeLength())
+
+	def getLowestFitnessPeak(self):
+		# Finds the peaks of the landscape
+		peak_genotypes = self.getPeaks()
+		lowest_peak_genotype = peak_genotypes[np.argmin([self.getFitness(g) for g in peak_genotypes])]
+		return lowest_peak_genotype
+
+				
 
 #==============================================================================#
 
