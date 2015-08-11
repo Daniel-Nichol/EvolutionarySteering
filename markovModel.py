@@ -24,7 +24,7 @@ def hammingDistance(s1, s2):
     assert len(s1) == len(s2)
     return sum(ch1 != ch2 for ch1, ch2 in zip(s1, s2))
 
-# Takes a genotype and converts it to an integer use indexing the fitness landscape list 
+# Takes a genotype and converts it to an integer for use indexing the fitness landscape list 
 def convertGenotypeToInt(genotype):
 	out = 0
 	for bit in genotype:
@@ -96,8 +96,6 @@ class FitnessLandscape:
 		lowest_peak_genotype = peak_genotypes[np.argmin([self.getFitness(g) for g in peak_genotypes])]
 		return lowest_peak_genotype
 
-				
-
 #==============================================================================#
 
 #==============================================================================#
@@ -130,10 +128,6 @@ def transProbSSWM(g1, g2, landscape, r=0):
 	else:
 		isPeak = landscape.isPeak(g1)
 		return int(isPeak)
-		# True
-		# for genotype in getOneStepNeighbours(g1):
-		# 	isPeak = isPeak and landscape.getFitness(g1) > landscape.getFitness(genotype)
-		# return int(isPeak)
 
 ################################################################################
 # Builds the transition matrix for a given landscape
